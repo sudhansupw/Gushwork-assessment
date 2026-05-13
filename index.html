@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gushwork Assignment - HDPE Pipes</title>
+  
+  <link rel="stylesheet" href="./style.css" />
+  
+  <style>
+    /* Add any custom animations/scrollbar hides that might be missing from the build */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-[url('./images/noise.svg')]">
+    <!-- Header -->
+    <header class="fixed left-0 right-0 bg-white z-[1000] transition-all duration-300 ease-in-out shadow-sm -top-[77px] px-4 lg:px-[60px] xl:px-[100px] py-4" id="header">
+      <div class="max-w-[1240px] mx-auto flex justify-between items-center font-inter font-medium text-sm text-[#262A2E]">
+        <img src="./images/mobile_logo.svg" alt="Gushwork logo" />
+        <div class="hidden md:flex gap-5 items-center">
+          <div>About Us</div>
+          <div class="flex items-center gap-2">
+            <p>Products</p>
+            <img src="./images/caretdown.svg" alt="down" />
+          </div>
+          <button class="bg-[#2B3990] px-4 py-3 rounded-[10px] text-white">Contact Us</button>
+        </div>
+        <button type="button" class="md:hidden w-[30px] h-[30px] cursor-pointer hamburger-btn focus:outline-none relative z-[1002] flex flex-col justify-center items-center gap-1" id="hamburger-btn" aria-label="Open menu">
+          <span class="block w-6 h-0.5 bg-[#262A2E] transition-all duration-300 ease-in-out" id="hb-line-1"></span>
+          <span class="block w-6 h-0.5 bg-[#262A2E] transition-all duration-300 ease-in-out opacity-100" id="hb-line-2"></span>
+          <span class="block w-6 h-0.5 bg-[#262A2E] transition-all duration-300 ease-in-out" id="hb-line-3"></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="md:hidden fixed inset-0 bg-black/50 z-[999] transition-opacity duration-300 ease-in-out opacity-0 pointer-events-none" id="mobile-menu-backdrop" aria-hidden="true"></div>
+
+    <nav id="mobile-menu" class="mobile-menu-container md:hidden fixed top-[78px] right-0 w-[280px] h-[calc(100vh-78px)] bg-white shadow-2xl z-[1001] flex flex-col gap-6 p-6 pt-8 transition-all duration-300 ease-in-out translate-x-full opacity-0" aria-label="Mobile navigation">
+      <button class="w-full text-left text-base font-medium text-[#262A2E] hover:text-[#2B3990] transition-colors duration-200 py-3 border-b border-[#E1E3E8]" type="button">About Us</button>
+      <button class="w-full flex items-center justify-between text-base font-medium text-[#262A2E] hover:text-[#2B3990] transition-colors duration-200 py-3 border-b border-[#E1E3E8]" type="button">
+        <span>Products</span>
+        <img src="./images/caretdown.svg" alt="" class="w-4 h-4" aria-hidden="true"/>
+      </button>
+      <button class="bg-[#2B3990] text-white px-6 py-3 rounded-[10px] font-medium text-base hover:bg-[#1f2a6b] transition-colors duration-200 mt-4" type="button">Contact Us</button>
+      <button id="close-menu-text" class="mt-auto text-sm text-[#6A7077] hover:text-[#2B3990] transition-colors duration-200 py-3" type="button">Close Menu</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="border-t border-[#E1E3E8] px-4 lg:px-[60px] xl:px-[100px]">
+      <div class="max-w-[1240px] mx-auto">
+        <nav class="flex gap-2 items-center lg:mt-8 mt-6">
+          <p class="font-inter text-sm text-[#4D545C]">Products</p>
+          <img src="./images/CaretRight.svg" alt="Right arrow" />
+          <p class="font-inter text-sm text-black">Two For One Twister</p>
+        </nav>
+        <div class="mt-7 lg:mt-12 flex flex-col lg:flex-row items-start gap-14">
+          <div class="w-full lg:flex-1 lg:max-w-[50%]">
+            <div class="relative xl:w-[530px] lg:w-[440px] lg:h-[500px] md:h-[500px] w-full h-[300px] overflow-hidden bg-gray-100">
+              <img id="main-image" src="./images/hero_first_image.png" class="w-full h-full rounded-3xl" alt="HDPE Pipes - View 1" />
+              <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2" aria-label="Previous image" type="button">
+                <img src="./images/left-arrow.png" alt="" class="lg:size-10 size-8" aria-hidden="true"/>
+              </button>
+              <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2" aria-label="Next image" type="button">
+                <img src="./images/right-arrow.png" alt="" class="lg:size-10 size-8" aria-hidden="true"/>
+              </button>
+              <div id="image-counter" class="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1.5 rounded-full text-sm font-inter">1 / 5</div>
+            </div>
+            <div class="mt-4 flex gap-3 overflow-x-auto scrollbar-hide pb-2" id="thumbnails-container">
+              <!-- Rendered via JS to keep the classes -->
+            </div>
+          </div>
+          <div class="w-full lg:flex-1">
+            <div class="flex gap-3 flex-wrap lg:flex-nowrap">
+              <div class="w-[142px] h-8 bg-[#F7F8F9] border border-[#E1E3E8] rounded-md flex justify-center items-center gap-2.5">
+                <img src="./images/bis_certificate.svg" alt="BIS Certified"/>
+                <p class="font-inter font-medium text-sm text-[#4B5563]">BIS Certified</p>
+              </div>
+              <div class="w-[142px] h-8 bg-[#F7F8F9] border border-[#E1E3E8] rounded-md flex justify-center items-center gap-2.5">
+                <img src="./images/iso_certificate.svg" alt="ISO Certified"/>
+                <p class="font-inter font-medium text-sm text-[#4B5563]">ISO Certified</p>
+              </div>
+              <div class="w-[142px] h-8 bg-[#F7F8F9] border border-[#E1E3E8] rounded-md flex justify-center items-center gap-2.5">
+                <img src="./images/ce_certificate.svg" alt="CE Certified"/>
+                <p class="font-inter font-medium text-sm text-[#4B5563]">CE Certified</p>
+              </div>
+            </div>
+            <h1 class="font-urbanist font-bold text-4xl md:text-[56px] leading-[120%] text-black mt-4 mb-4">Premium HDPE Pipes & Coils for Modern Infrastructure</h1>
+            <ul class="flex flex-col gap-4">
+              <li class="font-inter text-base flex items-center gap-1.5 h-6"><img src="./images/CheckCircle.svg" alt="check" />Leak-Proof Fusion Joints</li>
+              <li class="font-inter text-base flex items-center gap-1.5 h-6"><img src="./images/CheckCircle.svg" alt="check" />Chemical Resistance</li>
+              <li class="font-inter text-base flex items-center gap-1.5 h-6"><img src="./images/CheckCircle.svg" alt="check" />50+ Year Service Life</li>
+              <li class="font-inter text-base flex items-center gap-1.5 h-6"><img src="./images/CheckCircle.svg" alt="check" />Flexible Installation</li>
+              <li class="font-inter text-base flex items-center gap-1.5 h-6"><img src="./images/CheckCircle.svg" alt="check" />Flexible Installation</li>
+            </ul>
+            <div class="mt-6 flex flex-col gap-6">
+              <div class="p-4 border border-[#CFD1D4] bg-white rounded-[10px]">
+                <div class="flex flex-col gap-2">
+                  <p class="font-inter font-medium text-sm text-[#6A7077]">Price Range</p>
+                  <p class="font-inter font-semibold text-xl text-black">₹4,80,000 - 7,90,000</p>
+                </div>
+                <div class="mt-5 flex flex-col md:flex-row md:flex-wrap gap-3">
+                  <div class="bg-[#FEF3C7] rounded-md px-3 py-1.5 font-inter font-medium text-sm text-[#92400E]">Shipping: 6-12 days</div>
+                  <div class="bg-[#FEF3C7] rounded-md px-3 py-1.5 font-inter font-medium text-sm text-[#92400E]">Returns: If returned within 7 days</div>
+                  <div class="bg-[#F3F4F6] rounded-md px-3 py-1.5 font-inter font-medium text-sm text-[#0D0D0D]">Certifications: ISO Certified, BIS Certified</div>
+                </div>
+              </div>
+              <div class="flex flex-col md:flex-row gap-3 mb-14 lg:mb-0">
+                <button class="bg-[#2B3990] text-white rounded-xl h-[52px] flex justify-center items-center gap-1.5 font-inter font-medium text-base md:px-6 hover:bg-[#1f2a6b] transition-colors duration-200"><span>Get Custom Quote</span></button>
+                <button class="bg-white border border-[#2B3990] text-[#262A2E] rounded-xl h-[52px] flex justify-center items-center gap-1.5 font-inter font-medium text-base md:px-6 hover:bg-[#F7F8F9] transition-colors duration-200">
+                  <span>View Technical Specs</span>
+                  <img src="./images/CaretRight-2.svg" alt="right" class="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="zoom-preview" class="absolute sm:top-[30%] top-[55%] sm:left-[50%] left-[35%] lg:size-[300px] md:size-60 size-40 bg-no-repeat bg-[length:200%] bg-center border border-black/10 shadow-lg rounded-xl z-[999] pointer-events-none" style="display: none;"></div>
+        <div id="magnifier" class="fixed lg:w-[100px] lg:h-[100px] w-20 h-20 border border-[#B1B1B1] justify-center items-center pointer-events-none z-[9999] backdrop-blur-[2px]" style="display: none;">
+          <img src="./images/glass.svg" alt="magnifying glass" />
+        </div>
+        <div class="mt-14 lg:mt-20 mb-12 lg:mb-20 flex flex-col gap-5 overflow-x-auto scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+          <p class="font-inter text-sm text-center text-[#878B94]">Trusted by Hundreds of Companies Globally</p>
+          <div class="flex justify-between">
+            <img src="./images/euroflex.svg" class="w-[122px] h-8" alt="euroflex" />
+            <img src="./images/euroflex.svg" class="w-[122px] h-8" alt="euroflex" />
+            <img src="./images/euroflex.svg" class="w-[122px] h-8" alt="euroflex" />
+            <img src="./images/euroflex.svg" class="hidden md:block w-[122px] h-8" alt="euroflex" />
+            <img src="./images/euroflex.svg" class="hidden lg:block w-[122px] h-8" alt="euroflex" />
+            <img src="./images/euroflex.svg" class="hidden xl:block w-[122px] h-8" alt="euroflex" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Specs -->
+    <section class="bg-[#111827] px-4 lg:px-[60px] xl:px-[100px] py-12 lg:py-20 xl:py-[100px]">
+      <div class="max-w-[1240px] mx-auto">
+        <div class="flex flex-col gap-5 lg:max-w-[800px]">
+          <h2 class="font-urbanist font-bold text-4xl md:text-5xl leading-[120%] text-white">Technical Specifications at a Glance</h2>
+          <p class="font-inter text-base md:text-lg leading-[160%] text-white/80">Comprehensive performance data demonstrating our commitment to quality and engineering excellence.</p>
+        </div>
+        <div class="mt-12 lg:mt-14 rounded-xl overflow-hidden border border-[#374151]">
+          <table class="w-full border-collapse">
+            <thead class="bg-[#374151]">
+              <tr>
+                <th class="px-6 py-3 text-left font-inter font-medium text-sm text-white">PARAMETER</th>
+                <th class="px-6 py-3 text-left font-inter font-medium text-sm text-white">SPECIFICATION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Pipe Diameter Range</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">20mm to 1600mm (3/4" to 63")</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Pressure Ratings</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">PN 2.5, PN 4, PN 6, PN 8, PN 10, PN 12.5, PN 16</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Standard Dimension Ratio</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">SDR 33, SDR 26, SDR 21, SDR 17, SDR 13.6, SDR 11</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Operating Temperature</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">-40°C to +80°C (-40°F to +176°F)</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Service Life</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">50+ Years (at 20 degrees C, PN 10)</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Material Density</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">0.95 - 0.96 g/cm³</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Certification Standards</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">IS 5984, ISO 4427, ASTM D3035</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Joint Type</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Butt Fusion, Electrofusion, Mechanical</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Coil Lengths</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Up to 500m (for smaller diameters)</td></tr>
+              <tr><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">Country of Origin</td><td class="px-6 py-4 bg-[#1F2937] border-b border-[#374151] font-inter text-base text-white">🇮🇳 India</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="mt-12 lg:mt-14 h-[52px] flex justify-center items-center gap-2 rounded-xl border border-white bg-transparent w-full lg:max-w-[325px] lg:mx-auto font-inter font-medium text-base text-white">
+          <img src="./images/Download.svg" alt="download" />
+          Download Full Technical Datasheet
+        </button>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="px-4 lg:px-[60px] xl:px-[100px] py-12 lg:py-20 xl:py-[100px]">
+      <div class="max-w-[1240px] mx-auto">
+        <div class="flex flex-col gap-5">
+          <h3 class="font-urbanist font-bold text-4xl md:text-[44px] leading-[120%] text-[#0D0D0D]">Built to Last. Engineered to Perform.</h3>
+          <p class="font-inter text-base md:text-lg leading-[160%] text-[#6A7077]">From bulk bags to technical threads, Meera delivers precision solutions for every stage of your packaging process.</p>
+        </div>
+        <div class="mt-8 lg:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="features-grid">
+          <!-- Populated by JS to keep classes matching -->
+        </div>
+        <button class="mt-8 lg:mt-14 w-[174px] h-[52px] flex justify-center items-center font-inter font-medium text-base text-white bg-[#2B3990] rounded-xl mx-auto">Request a Quote</button>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="px-4 lg:px-[60px] xl:px-[100px] py-12 lg:py-20 xl:py-[100px] border-t border-b border-[#E1E3E8]">
+      <div class="max-w-[1240px] mx-auto">
+        <h4 class="font-urbanist font-bold text-4xl md:text-[44px] leading-[120%] text-[#111827]">
+          <span class="text-[#2B3990]">Frequently</span> Asked Questions
+        </h4>
+        <div class="mt-9 lg:mt-14 flex flex-col gap-4" id="faq-list">
+          <!-- Populated by JS -->
+        </div>
+        <div class="mt-14 p-5 border border-[#CFD1D4] bg-[#F7F8F9] rounded-[10px] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+          <div>
+            <p class="font-urbanist font-semibold text-[26px] leading-[120%] text-[#0D0D0D]">Want us to email the entire catalogue?</p>
+            <p class="mt-3 font-inter text-base text-[#262A2E]">Enter your email and an expert will share the catalogue with you.</p>
+          </div>
+          <div class="flex flex-col md:flex-row lg:flex-col gap-3 lg:w-[349px]">
+            <input type="text" placeholder="Email Address" class="flex-1 rounded-lg bg-white px-3 py-2.5 border border-[#E1E3E8] font-inter text-sm placeholder:text-[#959BA4]"/>
+            <button class="bg-[#2B3990] rounded-[10px] px-4 py-2.5 font-inter font-medium text-sm text-white">Request Catalogue</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Versatile Section -->
+    <section class="py-12 lg:py-20 xl:py-[100px] border-b border-[#E1E3E8]">
+      <div class="max-w-[1400px] mx-auto">
+        <div class="flex flex-col lg:flex-row lg:items-center px-4 lg:px-[60px] xl:px-[100px]">
+          <div class="flex flex-col gap-5 lg:flex-1 lg:pr-[40px]">
+            <h5 class="font-urbanist font-bold text-4xl md:text-[44px] leading-[120%] text-[#0D0D0D]">Versatile Applications Across Industries</h5>
+            <p class="font-inter text-base md:text-lg leading-[160%] text-[#4D545C]">From technical textiles to packaging materials, our precision-engineered machinery delivers superior performance across diverse applications.</p>
+          </div>
+          <div class="flex gap-3 lg:gap-4 mt-5 lg:mt-0 px-4 lg:px-0">
+            <img src="./images/left-nav.svg" id="versatile-prev" class="cursor-pointer w-[68px] h-[68px]" alt="left"/>
+            <img src="./images/right-nav.svg" id="versatile-next" class="cursor-pointer w-[68px] h-[68px]" alt="right"/>
+          </div>
+        </div>
+        <div id="versatile-scroll" class="mt-12 overflow-x-auto flex gap-4 px-4 lg:px-[60px] xl:px-[100px] scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+           <!-- JS populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- HDPE Section -->
+    <section class="px-4 lg:px-[60px] xl:px-[100px] py-12 lg:py-20 xl:py-[100px] border-b border-[#E1E3E8]">
+      <div class="max-w-[1240px] mx-auto">
+        <div class="flex flex-col gap-5 items-center lg:max-w-[800px] lg:mx-auto">
+          <h6 class="font-urbanist font-bold text-4xl lg:text-[44px] leading-[120%] text-center text-black">Advanced HDPE Pipe Manufacturing Process</h6>
+          <p class="font-inter text-base lg:text-lg leading-[160%] text-center text-[#4D545C]">Our state-of-the-art extrusion technology ensures consistent quality, optimal material properties, and dimensional accuracy in every pipe we manufacture.</p>
+        </div>
+        <div class="mt-14 bg-white border border-[#CFD1D4] rounded-[20px] p-4 lg:p-8">
+          <div>
+            <div class="lg:hidden">
+              <div id="mobile-step-text" class="bg-[#2B3990] rounded-[32px] px-4 py-2 font-inter font-medium text-sm leading-5 text-center text-white inline-block">Step 1/8: Raw Material</div>
+            </div>
+            <div id="desktop-steps-container" class="hidden lg:flex items-center mb-8 gap-0">
+              <!-- JS Populated -->
+            </div>
+          </div>
+          <div class="lg:flex lg:items-center lg:gap-14">
+            <div class="flex-1">
+              <div class="flex flex-col gap-4 mt-4 lg:mt-0">
+                <p id="hdpe-heading" class="font-urbanist font-semibold text-[28px] leading-[160%] text-[#0D0D0D]">High-Grade Raw Material Selection</p>
+                <p id="hdpe-desc" class="font-inter text-sm lg:text-base leading-5 lg:leading-6 text-[#4D545C]">Vacuum sizing tanks ensure precise outer diameter while internal pressure maintains perfect roundness and wall thickness uniformity.</p>
+              </div>
+              <ul id="hdpe-features" class="mt-4 list-none flex flex-col gap-3">
+                <!-- JS populated -->
+              </ul>
+            </div>
+            <div class="flex-1">
+              <img id="hdpe-img" src="./images/high-grade.svg" class="rounded-2xl w-full mt-6 lg:mt-0" alt="Process"/>
+            </div>
+          </div>
+          <div class="mt-8 flex justify-between items-center lg:hidden">
+            <button id="hdpe-prev" class="flex justify-center items-center px-4 py-2 border border-[#CFD1D4] rounded-[32px] font-inter font-medium text-sm leading-5 text-center text-[#0D0D0D] whitespace-nowrap bg-white hover:bg-[#F7F8F9] transition-colors duration-200" type="button">← Previous</button>
+            <div class="h-px bg-[#CFD1D4] w-full"></div>
+            <button id="hdpe-next" class="flex justify-center items-center px-4 py-2 border border-[#CFD1D4] rounded-[32px] font-inter font-medium text-sm leading-5 text-center text-[#0D0D0D] whitespace-nowrap bg-white hover:bg-[#F7F8F9] transition-colors duration-200" type="button">Next →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Performance/Testimonial -->
+    <section class="pt-12 pb-12 lg:pt-20 lg:pb-20 xl:pt-[100px] xl:pb-[100px] border-b border-[#E1E3E8]">
+      <div class="flex flex-col gap-5 items-center px-4 lg:px-[60px] xl:px-[100px]">
+        <h6 class="font-urbanist font-bold text-4xl lg:text-[44px] leading-[120%] text-center text-[#0D0D0D]">Trusted Performance. Proven Results</h6>
+        <p class="font-inter text-base lg:text-lg leading-[160%] text-center text-[#4D545C] max-w-[800px]">From innovative Two-For-One Twisters to specialized heat setting machines, we deliver complete solutions for modern textile manufacturing.</p>
+      </div>
+      <div id="testimonials-carousel" class="mt-14 lg:mt-14 overflow-x-auto flex gap-4 px-4 lg:px-[60px] xl:px-[100px] scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <!-- JS populated -->
+      </div>
+    </section>
+
+    <!-- Solutions -->
+    <section class="px-4 lg:px-[60px] xl:px-[100px] py-12 lg:py-20 xl:py-[100px] border-b border-[#E1E3E8]">
+      <div class="max-w-[1240px] mx-auto">
+        <div class="text-center mb-14 lg:mb-14">
+          <h2 class="font-urbanist font-bold text-4xl lg:text-[44px] leading-[120%] text-[#0D0D0D] mb-5">Complete Piping Solutions Portfolio</h2>
+          <p class="font-inter text-base lg:text-lg leading-[160%] text-[#4D545C] max-w-[800px] mx-auto">From innovative Two-For-One Twisters to specialized heat setting machines, we deliver complete solutions for modern textile manufacturing.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="solutions-grid">
+           <!-- JS Populated -->
+        </div>
+        <div class="mt-14 lg:mt-14 bg-white border border-[#CFD1D4] rounded-[10px] p-5 lg:p-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+          <div class="flex-1">
+            <h3 class="font-urbanist font-semibold text-[26px] leading-[120%] text-[#0D0D0D] mb-3">Didn't find what <span class="text-[#2B3990]">you're looking for?</span></h3>
+            <p class="font-inter text-base text-[#262A2E]">Talk to our experts for custom solutions and tailored guidance.</p>
+          </div>
+          <button class="bg-[#2B3990] text-white font-inter font-medium text-sm px-6 py-3 rounded-[10px] flex items-center gap-2 hover:bg-[#1f2a6b] transition-colors duration-200 flex-shrink-0" type="button">
+            <img src="./images/PhoneCall.svg" alt="" class="w-5 h-5" aria-hidden="true"/>
+            <span>Talk to an Expert</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="px-4 lg:px-[60px] xl:px-[100px] py-12 lg:py-20 xl:py-[100px] border-b border-[#E1E3E8]">
+      <div class="max-w-[1240px] mx-auto">
+        <div class="text-center mb-14 lg:mb-14">
+          <h2 class="font-urbanist font-bold text-4xl lg:text-[44px] leading-[120%] text-[#0D0D0D] mb-5">Resources & Downloads</h2>
+          <p class="font-inter text-base lg:text-lg leading-[160%] text-[#4D545C] max-w-[800px] mx-auto">Get all the technical documentation and resources you need to make informed decisions about our HDPE piping solutions.</p>
+        </div>
+        <div class="bg-white border border-[#CFD1D4] p-5 space-y-3 rounded-[10px] overflow-hidden" id="resources-list">
+           <!-- JS populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="px-4 lg:px-[60px] xl:px-[100px] py-12 lg:py-20 xl:py-[100px] border-b border-[#E1E3E8]">
+      <div class="max-w-[1240px] mx-auto">
+        <div class="rounded-[20px] bg-[#2B3990] p-6 lg:p-14 lg:flex lg:items-center lg:justify-between lg:gap-16">
+          <div class="flex flex-col gap-4 lg:max-w-[50%]">
+            <h6 class="font-urbanist font-bold text-4xl lg:text-5xl leading-[120%] text-white">Ready to Transform Your Textile Manufacturing?</h6>
+            <p class="font-inter text-base lg:text-lg leading-[160%] text-white/80">Get a personalized consultation and quote for machinery solutions tailored to your specific production requirements.</p>
+            <hr class="border-none h-[1.5px] bg-white/20 mt-6" />
+            <p class="font-inter text-sm lg:text-base leading-[160%] text-white/80">For immediate assistance, feel free to give us a direct call at +91-XXX-XXX-XXXX. You can also send us a quick email at info@meeraind.com</p>
+          </div>
+          <div class="mt-10 lg:mt-0 bg-[#F7F8F9] p-5 lg:p-8 rounded-2xl flex flex-col gap-4 w-full lg:max-w-sm">
+            <h2 class="font-inter font-medium text-base lg:text-xl text-[#262A2E]">Contact Us Today</h2>
+            <div class="flex flex-col gap-3">
+              <input type="text" placeholder="Full Name" class="px-3 py-2.5 border border-[#E1E3E8] rounded-lg font-inter text-sm outline-none focus:ring-2 focus:ring-[#2B3990]"/>
+              <input type="text" placeholder="Company Name" class="px-3 py-2.5 border border-[#E1E3E8] rounded-lg font-inter text-sm outline-none focus:ring-2 focus:ring-[#2B3990]"/>
+              <input type="email" placeholder="Email Address" class="px-3 py-2.5 border border-[#E1E3E8] rounded-lg font-inter text-sm outline-none focus:ring-2 focus:ring-[#2B3990]"/>
+              <div class="flex border border-[#E1E3E8] rounded-lg bg-white focus-within:ring-2 focus-within:ring-[#2B3990]">
+                <select class="px-2.5 py-2.5 border-r border-[#E1E3E8] bg-white rounded-l-lg font-inter text-sm outline-none">
+                  <option value="+91">+91</option>
+                </select>
+                <input type="tel" placeholder="7003026616" class="flex-1 px-3 py-2.5 rounded-r-lg font-inter text-sm outline-none"/>
+              </div>
+            </div>
+            <button class="bg-[#262A2E] text-white px-3 py-3 rounded-[10px] font-inter font-medium text-sm">Request Custom Quote</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-4 lg:px-[60px] xl:px-[100px] pt-12 lg:pt-20 xl:pt-[100px]">
+      <div class="max-w-[1240px] mx-auto">
+        <div class="p-6 lg:p-8 bg-white border border-[#CFD1D4] rounded-2xl flex flex-col lg:flex-row items-center justify-between gap-5">
+          <img src="./images/footer_mobile_logo.svg" alt="logo" />
+          <p class="font-urbanist font-semibold text-base lg:text-2xl leading-[120%] text-center lg:text-left text-[#0D0D0D] lg:max-w-[344px]">
+            Premium <span class="text-[#2B3990]">HDPE Pipes & Fittings Manufacturer</span> in South India
+          </p>
+        </div>
+        <div class="mt-15 flex flex-col lg:flex-row gap-6 lg:justify-between">
+          <div class="flex flex-col gap-4 lg:w-[158px]">
+            <p class="font-inter font-semibold text-xs text-[#0D0D0D]">About Us</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">About Us</p>
+          </div>
+          <div class="flex flex-col gap-4 lg:w-[158px]">
+            <p class="font-inter font-semibold text-xs text-[#0D0D0D]">Categories</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Packaging Industry Solutions</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Fishnet Manufacturing</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">PPMF/Tapes and Twines</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">FIBC and Woven Sack</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Carpet and Rugs Industry</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Technical Textiles</p>
+          </div>
+          <div class="flex flex-col gap-4 lg:w-[158px]">
+            <p class="font-inter font-semibold text-xs text-[#0D0D0D]">Products</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Two For One Twister</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">TPRS Twister Machine</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Ring Twisting Machines</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Covering Machines</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Heat Setting Equipment</p>
+            <p class="font-inter font-medium text-sm text-[#535A61]">Heat Setting Equipment</p>
+          </div>
+          <div class="flex flex-col gap-2.5 lg:w-[158px]">
+            <p class="font-inter font-semibold text-xs text-[#0D0D0D]">Contact</p>
+            <div class="flex gap-1.5 items-start">
+              <img src="./images/MapPinLine.svg" alt="map" />
+              <p class="font-inter text-xs text-[#535A61]">2126, Road No. 2, GIDC Sachin, Surat - 394 230 Gujarat, India</p>
+            </div>
+            <div class="flex gap-1.5 items-start">
+              <img src="./images/Phone.svg" alt="phone" />
+              <p class="font-inter text-xs text-[#535A61]">+91-XXX-XXX-XXXX</p>
+            </div>
+            <div class="flex gap-1.5 items-start">
+              <img src="./images/EnvelopeSimple.svg" alt="mail" />
+              <p class="font-inter text-xs text-[#535A61]">info@meeraind.com</p>
+            </div>
+            <div class="flex gap-1.5 items-start">
+              <img src="./images/Headset.svg" alt="headset" />
+              <p class="font-inter text-xs text-[#535A61]">support@meeraind.com</p>
+            </div>
+            <hr class="border-none h-px bg-[#E1E3E8] my-6" />
+            <div class="flex items-center gap-6">
+                <img src="./images/linkedin.svg" alt="linkedin" class="hover:opacity-80 transition-opacity duration-200 lg:size-8 size-6" />
+                <img src="./images/x.svg" alt="x" class="hover:opacity-80 transition-opacity duration-200 lg:size-8 size-6" />
+                <img src="./images/insta.svg" alt="insta" class="hover:opacity-80 transition-opacity duration-200 lg:size-8 size-6" />
+            </div>
+          </div>
+        </div>
+        <div class="mt-12 py-3 border-t border-[#E1E3E8] flex flex-col lg:flex-row lg:justify-between gap-6 lg:gap-60">
+          <p class="font-inter text-xs text-[#535A61]">Copyright © 2025 Meera Industries Limited | All Rights Reserved</p>
+          <div class="flex justify-between lg:gap-14">
+            <p class="font-inter text-xs text-[#535A61]">Privacy Policy</p>
+            <p class="font-inter text-xs text-[#535A61]">Terms of Service</p>
+            <p class="font-inter text-xs text-[#535A61]">Sitemap</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
