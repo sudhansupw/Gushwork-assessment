@@ -1,5 +1,9 @@
+// Main JavaScript file for handling interactive features on the HDPE Pipes product page
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize all interactive functionality when the DOM is fully loaded
+
   /* ================= HEADER & MOBILE MENU ================= */
+  // Handle sticky header behavior on scroll
   const header = document.getElementById('header');
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -67,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ================= HERO GALLERY & ZOOM ================= */
+  // Image gallery with thumbnails and zoom functionality
   const images = [
     { url: './images/hero_first_image.png', alt: 'HDPE Pipes - View 1' },
     { url: './images/hero_second_image.jpg', alt: 'Pipeline Infrastructure - View 2' },
@@ -150,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ================= FEATURES DATA ================= */
+  // Dynamically populate features grid with product benefits
   const featuresGrid = document.getElementById('features-grid');
   if (featuresGrid) {
     const features = [
@@ -175,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ================= FAQ ACCORDION ================= */
+  // FAQ accordion functionality for expanding/collapsing answers
   const faqList = document.getElementById('faq-list');
   if (faqList) {
     const faqs = [
@@ -214,6 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ================= VERSATILE CAROUSEL ================= */
+  // Versatile applications carousel with navigation controls
   const versatileScroll = document.getElementById('versatile-scroll');
   const vPrev = document.getElementById('versatile-prev');
   const vNext = document.getElementById('versatile-next');
@@ -251,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ================= HDPE PROCESS ================= */
+  // HDPE manufacturing process stepper with dynamic content updates
   const steps = [
     { title: 'Raw Material', heading: 'High-Grade Raw Material Selection', content: 'Vacuum sizing tanks ensure precise outer diameter while internal pressure maintains perfect roundness and wall thickness uniformity.', features: ['PE100 grade material', 'Optimal molecular weight distribution'], image: './images/high-grade.svg' },
     { title: 'Extrusion', heading: 'High-Efficiency Extrusion Lines', content: 'Our single-screw extruders melt and transport the PE material uniformly, ensuring a perfectly homogenous pipe structure without degradation.', features: ['High-torque motor drive', 'Advanced barrel heating zones'], image: './images/high-grade.svg' },
@@ -341,6 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ================= TESTIMONIALS CAROUSEL ================= */
+  // Testimonials carousel displaying customer feedback
   const testimonialsCarousel = document.getElementById('testimonials-carousel');
   if (testimonialsCarousel) {
     const tItems = [
@@ -372,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ================= SOLUTIONS ================= */
+  // Solutions grid population with product offerings
   const solutionsGrid = document.getElementById('solutions-grid');
   if (solutionsGrid) {
     const sItems = [
@@ -398,6 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ================= RESOURCES ================= */
+  // Resources list population with downloadable documents
   const resourcesList = document.getElementById('resources-list');
   if (resourcesList) {
     const rItems = [
